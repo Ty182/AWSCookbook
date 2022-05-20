@@ -6,7 +6,7 @@ It's never a good idea to constantly have administrative permissions. Instead, w
 
 ###### -- Workflow -- 
 
-![AWS Diagram](/images/aws_diagram.png)
+![AWS Diagram](./images/aws_diagram.png)
 
 ### Step 1 - Create an IAM Trust Policy
 
@@ -30,17 +30,17 @@ So, the first thing we need to do is create an IAM Trust Policy. We'll later att
 
 Now we're going to upload that Trust Policy into our AWS CloudShell. All you need to do is log in to the AWS Console, and at the top right, you'll find a small box that looks like this.
 
-![AWS CloudShell](/images/aws-cloudshell.png)
+![AWS CloudShell](./images/aws-cloudshell.png)
 
 You're welcome to use AWS CLI from your local machine; it's the same thing. However, CloudShell is handy since you don't have to worry about plaintext credentials sitting on your local machine, as is the case with AWS CLI. There are ways around this, but that's for another time. 
 
 Once you've clicked the CloudShell icon, follow the below screenshots. When down, we'll type ```ls``` and see our file uploaded. 
 
-![AWS CloudShell Upload](/images/aws-cs-upload.png)
+![AWS CloudShell Upload](./images/aws-cs-upload.png)
 
-![AWS CloudShell Upload 2](/images/aws-cs-upload-2.png)
+![AWS CloudShell Upload 2](./images/aws-cs-upload-2.png)
 
-![AWS CloudShell Upload Success](/images/aws-cs-upload-success.png)
+![AWS CloudShell Upload Success](./images/aws-cs-upload-success.png)
 
 Some things to keep in mind, CloudShell is Region-specific. That means if you change Regions, your files will not follow you. Additionally, files can be a max of 1Gb in size, and CloudShell can only hold a maximum of 1Gb worth of data.  
 
@@ -53,13 +53,13 @@ You're welcome to name the Role whatever you'd like; just remember what it is. T
 
 Once you've run that command, you'll see an output similar to the below.
 
-![AWS CS Output](/images/cs-output.png)
+![AWS CS Output](./images/cs-output.png)
 
 Curious about what we did? Check it out in your AWS Console. 
 
-![AWS Console role](/images/console-role.png)
+![AWS Console role](./images/console-role.png)
 
-![AWS Console trust relationship](/images/console-trust-relationship.png)
+![AWS Console trust relationship](./images/console-trust-relationship.png)
 
 There's that Trust relationship I mentioned earlier ^^^.
 
@@ -69,7 +69,7 @@ Our next step is attaching an IAM Policy to our newly created IAM Role. The IAM 
 
 If you're curious about **AmazonEC2ReadOnlyAccess**, that's an existing policy created by AWS. You can view it in the console, see what privileges it grants, and copy the ARN if needed. Ideally, we would make our own policy granting only the privileges we need, but this works for this lab. Since it's read-only, we won't be able to cause any "damage," nor do we have anything sensitive this Role could access.
 
-![EC2 Read-only Role](/images/ec2-role.png)
+![EC2 Read-only Role](./images/ec2-role.png)
 
 ### Step 5 - Testing the IAM Policy with IAM Policy Simulator
 
@@ -83,7 +83,7 @@ aws iam simulate-principal-policy \
  --action-names ec2:CreateInternetGateway
  ```
 
- ![AWS EC2 Deny](/images/ec2deny.png)
+ ![AWS EC2 Deny](./images/ec2deny.png)
 
  Success! As we can see, we get an **implicitDeny** error. The error means that our role does not have any privileges to perform this command. 
 
@@ -95,7 +95,7 @@ aws iam simulate-principal-policy \
  --action-names ec2:DescribeInstances
  ```
 
- ![AWS EC2 Allow](/images/ec2allow.png)
+ ![AWS EC2 Allow](./images/ec2allow.png)
 
  And there we have it; we're allowed to perform this command. 
 
