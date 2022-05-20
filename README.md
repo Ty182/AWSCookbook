@@ -8,6 +8,11 @@
 
 - Since the authors only make a [few receipes](https://github.com/AWSCookbook/Getting-Started/blob/main/ListOfFreeRecipes.md) available for free, I'll only host walkthroughs for these here on this public GitHub repo.
 
-#### List of free receipes as of May 2022
+### My Writeups
+
+- [IAM Policy Simulator](https://github.com/Ty182/AWSCookbook/tree/main/chapter-1-security/104-testing-iam-policies-with-the-iam-policy-simulator)
+
+
+### List of free receipes as of May 2022
 
 ![List of free receipes as of May 2022](/screenshot/freeReceipeScreenshot.png?raw=true)
